@@ -35,7 +35,6 @@ public class JwtUtil {
     public boolean isValid(String jwt){
         try {
             JWT.require(ALGORITHM).build().verify(jwt);
-
             return true;
         } catch (JWTVerificationException e){
             return false;
@@ -43,6 +42,9 @@ public class JwtUtil {
     }
 
     public String getUsername(String jwt){
-        return JWT.require(ALGORITHM).build().verify(jwt).getSubject();
+        return JWT.require(ALGORITHM)
+                .build()
+                .verify(jwt)
+                .getSubject();
     }
 }
